@@ -1,0 +1,33 @@
+.plato {
+  display: flex;
+  border-radius: 1rem;
+}
+
+img {
+  width: 15rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+mat-card {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+@media only screen and (max-width: 40rem) {
+  .plato {
+    flex-wrap: wrap;
+    border-radius: 0;
+  }
+
+  img {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  mat-card {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

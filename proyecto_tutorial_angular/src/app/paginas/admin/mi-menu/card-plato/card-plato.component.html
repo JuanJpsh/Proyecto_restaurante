@@ -1,0 +1,16 @@
+<div class="plato">
+    <img src="../../../assets/imagenes/descargar.png">
+    <mat-card>
+        <mat-card-title>{{plato.nombre}}</mat-card-title>
+        <mat-card-subtitle>$ {{plato.precio}}</mat-card-subtitle>
+        <mat-card-content>
+            <p>
+                {{plato.descipcion}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary">Editar</button>
+            <button mat-raised-button color="warn" (click)="clickEliminar.emit(plato.id)">Eliminar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
