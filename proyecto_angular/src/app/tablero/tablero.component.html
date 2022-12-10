@@ -1,0 +1,12 @@
+<div id="contenedor-tablero">
+    <!-- Top Bar -->
+    <app-topbar (clickMenu)="drawer.toggle()"></app-topbar>
+    <mat-drawer-container [hasBackdrop]="true">
+        <mat-drawer #drawer [mode]='"side"' [position]="'start'">
+            <app-sidebar></app-sidebar>
+        </mat-drawer>
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>
