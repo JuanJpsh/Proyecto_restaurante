@@ -1,10 +1,7 @@
-<div class="contenedor">
-    <div class="lista">
-        <app-card-plato *ngFor="let plato of listaPlatos" [plato]="this.plato"
+<div class="lista">
+    <app-card-plato *ngFor="let plato of listaPlatos" [plato]="this.plato"
         (clickEliminar)="enEliminarPlato($event)"></app-card-plato>
-        <button mat-fab color="primary" matTooltip="Agregar plato" [matTooltipPosition]="'left'"
-            (click)="enAgregarPlato()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+    <button mat-fab color="primary" matTooltip="Agregar plato" [matTooltipPosition]="'left'" (click)="enAgregarPlato()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

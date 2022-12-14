@@ -1,5 +1,10 @@
-app-topbar{
-    position: sticky;
-    top: 0;
-    z-index: 2;
+app-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+mat-drawer{
+  position: fixed;
+  top: 3.5rem;
 }

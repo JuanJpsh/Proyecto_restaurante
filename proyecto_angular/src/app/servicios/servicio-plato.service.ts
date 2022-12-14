@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Plato } from 'src/modelos/plato';
 
 @Injectable({
@@ -51,6 +50,34 @@ export class ServicioPlatoService {
       imagen: "Imagen",
       precio: 10000
     },
+    {
+      id: "7",
+      nombre: "Plato 7",
+      descipcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?",
+      imagen: "Imagen",
+      precio: 10000
+    },
+    {
+      id: "8",
+      nombre: "Plato 8",
+      descipcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?",
+      imagen: "Imagen",
+      precio: 10000
+    },
+    {
+      id: "9",
+      nombre: "Plato 9",
+      descipcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?",
+      imagen: "Imagen",
+      precio: 10000
+    },
+    {
+      id: "10",
+      nombre: "Plato 10",
+      descipcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?",
+      imagen: "Imagen",
+      precio: 10000
+    }
   ]
 
   private url = 'https://pokeapi.co/api/v2/pokemon/ditto'

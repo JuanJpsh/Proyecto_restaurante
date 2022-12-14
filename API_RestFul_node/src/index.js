@@ -1,6 +1,7 @@
-const app = require('./app')
-
+require('dotenv').config()
 require("./database");
+
+const app = require('./app')
 
 //Starting the server
 app.listen(app.get("port"), () => {

@@ -1,12 +1,11 @@
 const authService = require("../domain/services/AuthService");
 
 const signin = (req, res) => {
-  const { username, password } = req.body;
-  authService.signin(username, password).then(resp => {
+  const { correo, contrasenia } = req.body;
+  authService.signin(correo, contrasenia).then(resp => {
     if (resp) return res.json(resp)
     res.status(401).json({
-      logged: false,
-      message: "Incorrect credentials"
+      mensaje: "Credenciales incorrectas"
     });
   })
 };

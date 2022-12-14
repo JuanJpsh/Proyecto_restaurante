@@ -8,11 +8,11 @@
         <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #optionsMenu xPosition="before">
-        <button mat-menu-item>
-            <mat-icon>settings</mat-icon>
-            <span>Configuración</span>
+        <button mat-menu-item *ngFor="let op of opciones">
+            <mat-icon>{{op.icon}}</mat-icon>
+            <span>{{op.labelMenu}}</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="enCerrarSesion()">
             <mat-icon>logout</mat-icon>
             <span>Salir</span>
         </button>

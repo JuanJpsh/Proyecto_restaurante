@@ -1,7 +1,7 @@
 const usuarioService = require("../domain/services/UsuarioService");
 
-const getAll = (req, res) => {
-  usuarioService.getAll().then(data => {
+const obtenerPermisos = (req, res) => {
+  usuarioService.obtenerPermisos(req.idUsuario).then(data => {
     res.json(data);
   })
 };
@@ -16,7 +16,7 @@ const update = (req, res) => {
 
 
 module.exports = {
-  getAll,
+  obtenerPermisos,
   update,
   deleteById,
 };

@@ -1,41 +1,46 @@
-class Permiso {
-    permiso!: String
-    label!: String
-    icon?: String
-}
+import Permiso from "src/modelos/permiso"
 
-export const GESTIONAR_MENU: Permiso = {
-    permiso:"gestionar_menu",
-    label:"Mi menu",
-    icon:"menu_book"
-}
-
-export const ORDENAR: Permiso = {
-    permiso:"ordenar",
-    label:"Atender",
-    icon:"restaurant"
-}
-
-export const VER_PROPINAS: Permiso = {
-    permiso:"ver_propinas",
-    label:"Propinas",
-    icon:"paid"
-}
-
-export const ANALIZAR: Permiso = {
-    permiso:"analizar",
-    label:"Mis estadisticas",
-    icon:"bar_chart"
-}
-
-export const GESTIONAR_PERSONAL: Permiso = {
-    permiso:"gestionar_personal",
-    label:"Personal",
-    icon:"badge"
-}
-
-export const GESTIONAR_APLICACION: Permiso = {
-    permiso:"gestionar_aplicacion",
-    label:"Configuración",
-    icon:"settings"
-}
+export const PERMISOS: Permiso[] = [
+    {
+        permiso:"gestionar_aplicacion",
+        labelMenu:"Configuración",
+        labelPermiso:"Gestionar aplicacion",
+        icon:"settings"
+    },
+    {
+        permiso:"gestionar_restaurantes",
+        labelMenu:"Mis restaurantes",
+        labelPermiso:"Gestionar restaurantes",
+        icon:"storefront"
+    },
+    {
+        permiso:"gestionar_menu",
+        labelMenu:"Mi menu",
+        labelPermiso:"Gestionar Menu",
+        icon:"menu_book"
+    },
+    {
+        permiso:"ordenar",
+        labelMenu:"Atender",
+        labelPermiso:"Atender",
+        icon:"restaurant"
+    },
+    {
+        permiso:"ver_propinas",
+        labelMenu:"Propinas",
+        labelPermiso:"Ver propinas",
+        icon:"paid"
+    },
+    {
+        permiso:"analizar",
+        labelMenu:"Mis estadisticas",
+        labelPermiso:"Ver estadisticas",
+        icon:"bar_chart"
+    },
+    {
+        permiso:"gestionar_personal",
+        labelMenu:"Personal",
+        labelPermiso:"Gestionar personal",
+        icon:"badge"
+    }
+]

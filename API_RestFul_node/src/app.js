@@ -1,20 +1,20 @@
 const express = require("express");
 const morgan = require(`morgan`);
 const cors = require("cors");
-const initialDB = require("./libs/initialSetup")
 
-const corsOrigin = "http://localhost:3000";
+//Previous database config
+if(process.env.DEPLOY === 'false'){
+  require("./libs/initialSetup")
+}
+
 const app = express();
-
-//Initial DB
-initialDB()
 
 //settings
 app.set("port", process.env.PORT || 3001);
 app.set("json spaces", 2);
 app.use(
   cors({
-    origin: corsOrigin,
+    origin: process.env.CORS_ORIGIN,
   })
 );
 

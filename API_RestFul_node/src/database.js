@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { database } = require("./config")
 
 class Database {
   constructor() {
@@ -7,7 +6,7 @@ class Database {
   }
   connect() {
     mongoose
-      .connect(`mongodb://${database.host}:${database.port}/${database.bd}`)
+      .connect(`mongodb://${process.env.BD_HOST}:${process.env.BD_PORT}/${process.env.BD_NAME}`)
       .then(() => {
         console.log("Database connected successfully");
       })

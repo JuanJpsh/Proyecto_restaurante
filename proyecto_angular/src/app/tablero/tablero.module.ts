@@ -15,7 +15,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class TableroModule { }

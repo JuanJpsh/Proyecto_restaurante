@@ -6,7 +6,6 @@ import { MiMenuComponent } from './mi-menu/mi-menu.component';
 import { MaterialModule } from '../../compartido/material/material.module';
 import { CardPlatoComponent } from './mi-menu/card-plato/card-plato.component';
 
-
 @NgModule({
   declarations: [
     MiMenuComponent,

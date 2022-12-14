@@ -1,1 +1,7 @@
-<p>sidebar works!</p>
+<mat-nav-list>
+    <div *ngFor="let op of opciones">
+        <a mat-list-item>
+            <mat-icon matListItemIcon>{{op.icon}}</mat-icon>{{op.labelMenu}}
+        </a>
+    </div>
+</mat-nav-list>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import Permiso from 'src/modelos/permiso';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
+  
+  @Input() opciones: Permiso[] = []
+  
   constructor() { }
 
   ngOnInit(): void {
