@@ -10,16 +10,28 @@ const createUsers = async () => {
     const countUsers = await user.estimatedDocumentCount();
     if (countUsers > 0) return;
 
-    const permissions = (await permission.find()).map((perm) => {
+    const permissions = await permission.find();
+    const permissionsIds = permissions.map((perm) => {
       return perm._id.toString();
     });
+    const permissionManageRest = permissions.find(
+      (perm) => perm.name == "manage_restaurant"
+    );
 
-    const values = await new user({
-      name: "Juan Pablo Solarte",
-      email: "juan.jpsh17@gmail.com",
-      password: await user.encryptPassword("Cont1234"),
-      permissions,
-    }).save();
+    const values = await Promise.all([
+      new user({
+        name: "Juan Pablo Solarte",
+        email: "juan.jpsh17@gmail.com",
+        password: await user.encryptPassword("Cont1234"),
+        permissions: permissionsIds,
+      }).save(),
+      new user({
+        name: "Natalia Andrea Medina",
+        email: "nataliamed@unicauca.edu.co",
+        password: await user.encryptPassword("Cont1234"),
+        permissions: permissionManageRest._id.toString(),
+      }).save(),
+    ]);
 
     console.info("************* Added Users *************");
     console.log(values);
@@ -45,18 +57,20 @@ const createFoodPlates = async () => {
       }).save(),
       new foodPlate({
         name: "Hamburguesa doble carne",
-        description: "Hammburguesa con doble carne Angus acompañada de papas a la francesa",
+        description:
+          "Hammburguesa con doble carne Angus acompañada de papas a la francesa",
         image:
           "https://cuponassets.cuponatic-latam.com/backendCo/uploads/imagenes_descuentos/186268/cd4e98329a4bae0c65ef151283f2acc82b318c8d.XL2.jpg",
         price: 35000,
       }).save(),
       new foodPlate({
         name: "Mazorcada especial",
-        description: "Maiz tierno desgranado acompañado con trozos de carne y queso gratinado",
+        description:
+          "Maiz tierno desgranado acompañado con trozos de carne y queso gratinado",
         image:
           "https://uploads.candelaestereo.com/1/2021/08/como-hacer-una-mazorcada-la-manera-mas-facil-destacada.jpg",
         price: 30000,
-      }).save()
+      }).save(),
     ]);
 
     console.info("************* Added Food Plates *************");
@@ -67,4 +81,4 @@ const createFoodPlates = async () => {
 };
 
 createUsers();
-createFoodPlates()
+createFoodPlates();

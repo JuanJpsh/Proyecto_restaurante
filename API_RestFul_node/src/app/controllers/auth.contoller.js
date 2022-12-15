@@ -25,9 +25,6 @@ const signin = async (req, res) => {
   const token = jwt.sign(
     {
       id: userFound._id,
-      permissions: userFound.permissions.map((perm) => {
-        return perm._id;
-      }),
     },
     process.env.SECRET,
     {

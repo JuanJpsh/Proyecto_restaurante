@@ -1,12 +1,13 @@
 const jwt = require("jsonwebtoken");
 const user = require("../models/User");
+
 const { httpErrorServer } = require("../helpers/httpError.helper");
 
 const verifyToken = async (req, res, next) => {
   const bearerToken = req.headers["x-access-token"];
   if (!bearerToken)
-    return res.status(403).json({
-      message: "Token no provided",
+    return res.status(403).send({
+      error: "Token no provided",
     });
   let decoded;
   try {
@@ -35,17 +36,4 @@ const verifyToken = async (req, res, next) => {
   next();
 };
 
-const isAdmin = async (req, res, next) => {
-  let foundUser = await user.findById(req.userId, { contrasenia: 0 });
-  if (foundUser.admin) {
-    next();
-    return;
-  }
-
-  return res.status(403).json({
-    success: false,
-    message: "Requer Admin role",
-  });
-};
-
-module.exports = { verifyToken, isAdmin };
+module.exports = { verifyToken };
