@@ -1,0 +1,31 @@
+<div class="contenedor">
+    <mat-card class="centro-hor-ver">
+        <mat-card-header class="centro-horizontal-hijos">
+            <mat-card-title >
+                Inicio de sesion
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="credentialsFormGroup">
+                <mat-form-field>
+                    <mat-label>Correo electronico</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ej. pat@ejemplo.com">
+                    <mat-error *ngIf="credentialsFormGroup.get('email')?.touched || signinButton">
+                        {{getError("email")}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" matInput formControlName="password" placeholder="Ingrese la contraseña">
+                    <mat-error *ngIf="credentialsFormGroup.get('password')?.touched || signinButton">
+                        {{getError("password")}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-error *ngIf="failedSession">
+                    Credenciales <strong>incorrectas.</strong> Verifique y vuelva a intentarlo.
+                </mat-error>
+                <button mat-raised-button #signinButton color="primary" [disabled]="loading" (click)="onLogin()">Iniciar sesion</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

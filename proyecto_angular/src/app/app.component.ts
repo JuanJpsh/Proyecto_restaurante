@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
     <router-outlet></router-outlet>`
 })
 export class AppComponent {
-  title = 'proyecto_tutorial_angular';
+  title = 'Manager_Restaurant_Angular';
 }

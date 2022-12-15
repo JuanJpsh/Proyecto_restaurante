@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableroModule } from './tablero/tablero.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SpinnerInterceptor } from './compartido/interceptors/spinner.interceptor';
-import { CompartidoModule } from './compartido/compartido/compartido.module';
+import { SpinnerInterceptor } from './helpers/interceptors/spinner.interceptor';
+import { SharedModule } from './shared/shared/shared.module';
+import { HeaderInterceptor } from './helpers/interceptors/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,13 @@ import { CompartidoModule } from './compartido/compartido/compartido.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    TableroModule,
-    CompartidoModule,
+    DashboardModule,
+    SharedModule,
     HttpClientModule
-  ],
+  ], 
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

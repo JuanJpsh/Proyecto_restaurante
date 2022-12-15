@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="clickMenu.emit()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Administrador restaurante</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="optionsMenu">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #optionsMenu xPosition="before">
+        <button mat-menu-item *ngFor="let op of options">
+            <mat-icon>{{op.icon}}</mat-icon>
+            <span>{{op.labelMenu}}</span>
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>Salir</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>
