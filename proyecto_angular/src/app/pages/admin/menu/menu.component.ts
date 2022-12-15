@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FoodPlate } from 'src/app/models/food-plate';
 import { FoodPlateService } from 'src/app/services/food-plate.service';
@@ -7,18 +12,21 @@ import { FoodPlateService } from 'src/app/services/food-plate.service';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent implements OnInit {
   foodPlateList: FoodPlate[] = [];
 
   constructor(
     private foodPlateSvc: FoodPlateService,
-    private matSnackSvc: MatSnackBar
+    private matSnackSvc: MatSnackBar,
+    private CDR: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.foodPlateSvc.getFoodPlate().then((resp) => {
       if (resp) this.foodPlateList = resp;
+      this.CDR.markForCheck();
     });
   }
 
@@ -34,6 +42,7 @@ export class MenuComponent implements OnInit {
     this.foodPlateSvc.addFoodPlate(foodPlate).then((resp) => {
       if (resp && resp.id !== '0') {
         this.foodPlateList = [foodPlate, ...this.foodPlateList];
+        this.CDR.markForCheck();
         this.notifyOperation('Plato agregado');
       } else {
         this.notifyOperation('Error en sistema. Intetelo mas tarde');
@@ -55,12 +64,14 @@ export class MenuComponent implements OnInit {
     this.foodPlateList = this.foodPlateList.filter(
       (plato) => plato !== deletedFoodPlate
     );
+    this.CDR.markForCheck();
     this.notifyOperation('¿Esta seguro de eliminar el plato?', 'Deshacer');
     this.matSnackSvc._openedSnackBarRef?.onAction().subscribe(() => {
       this.foodPlateList =
         posFoodPlate === 0
           ? [deletedFoodPlate, ...this.foodPlateList]
           : rehacerPlato(this.foodPlateList);
+      this.CDR.markForCheck();
     });
 
     this.matSnackSvc._openedSnackBarRef
@@ -70,6 +81,7 @@ export class MenuComponent implements OnInit {
           this.foodPlateSvc.deleteFoodPlate(deletedFoodPlate).then((resp) => {
             if (!resp) {
               rehacerPlato(this.foodPlateList);
+              this.CDR.markForCheck();
               this.notifyOperation('Error en sistema. Intetelo mas tarde');
             }
           });

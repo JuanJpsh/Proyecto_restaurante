@@ -1,4 +1,4 @@
-.plato {
+.food-plate {
   display: flex;
   border-radius: 1rem;
 }
@@ -15,7 +15,7 @@ mat-card {
 }
 
 @media only screen and (max-width: 40rem) {
-  .plato {
+  .food-plate {
     flex-wrap: wrap;
     border-radius: 0;
   }

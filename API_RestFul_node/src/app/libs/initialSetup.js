@@ -2,11 +2,11 @@ const permission = require("../models/Permission");
 
 createPermissions = async () => {
   try {
-    let count = await permission.estimatedDocumentCount();
+    const count = await permission.estimatedDocumentCount();
 
     if (count > 0) return false;
 
-    const valores = await Promise.all([
+    const values = await Promise.all([
       new permission({
         name: "manage_menu",
       }).save(),
@@ -19,7 +19,7 @@ createPermissions = async () => {
     ]);
 
     console.info("************* Added permissions *************");
-    console.log(valores);
+    console.log(values);
     return true;
   } catch (error) {
     console.error(error.message);
