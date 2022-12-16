@@ -32,7 +32,6 @@ const verifyToken = async (req, res, next) => {
     return res.status(401).send({
       error: "Access denied",
     });
-
   next();
 };
 

@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.foodPlateSvc.getFoodPlate().then((resp) => {
+    this.foodPlateSvc.getFoodPlate().subscribe((resp) => {
       if (resp) this.foodPlateList = resp;
       this.CDR.markForCheck();
     });

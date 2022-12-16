@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FoodPlate } from '../models/food-plate';
 
+import { url_food } from '../helpers/urlsReq';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -38,61 +41,13 @@ export class FoodPlateService {
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?',
       image: 'Imagen',
       price: 10000,
-    },
-    {
-      id: '5',
-      name: 'Plato 5',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?',
-      image: 'Imagen',
-      price: 10000,
-    },
-    {
-      id: '6',
-      name: 'Plato 6',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?',
-      image: 'Imagen',
-      price: 10000,
-    },
-    {
-      id: '7',
-      name: 'Plato 7',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?',
-      image: 'Imagen',
-      price: 10000,
-    },
-    {
-      id: '8',
-      name: 'Plato 8',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?',
-      image: 'Imagen',
-      price: 10000,
-    },
-    {
-      id: '9',
-      name: 'Plato 9',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?',
-      image: 'Imagen',
-      price: 10000,
-    },
-    {
-      id: '10',
-      name: 'Plato 10',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit animi, ea sequi tempore libero id accusamus nulla perferendis earum in?',
-      image: 'Imagen',
-      price: 10000,
-    },
+    }
   ];
 
   constructor(private httpClient: HttpClient) {}
 
-  async getFoodPlate(): Promise<FoodPlate[]> {
-    return this.courseFoodList;
+  getFoodPlate(): Observable<any> {
+    return this.httpClient.get(url_food);
   }
 
   async addFoodPlate(foodPlate: FoodPlate): Promise<FoodPlate> {
