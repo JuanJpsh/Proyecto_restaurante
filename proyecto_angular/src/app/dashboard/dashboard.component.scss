@@ -5,6 +5,11 @@ app-topbar {
 }
 
 mat-drawer{
+  height: 100%;
   position: fixed;
   top: 3.5rem;
+}
+
+mat-drawer-content{
+  height: 100vh;
 }

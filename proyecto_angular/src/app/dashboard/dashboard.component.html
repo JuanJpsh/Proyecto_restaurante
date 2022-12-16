@@ -1,13 +1,10 @@
-<div>
-    <!-- Top Bar -->
-    <app-topbar (clickMenu)="drawer.toggle()" [options]="permissionsTopbar"></app-topbar>
-    <mat-drawer-container [hasBackdrop]="true">
-        <mat-drawer #drawer [mode]='"over"' [position]="'start'">
-            <app-sidebar [options]="permissionsSidebar"></app-sidebar>
-        </mat-drawer>
-        <mat-drawer-content>
-            <router-outlet></router-outlet>
-        </mat-drawer-content>
-    </mat-drawer-container>
-</div>
-
+<!-- Top Bar -->
+<app-topbar (clickMenu)="drawer.toggle()" [options]="permissionsTopbar"></app-topbar>
+<mat-drawer-container [hasBackdrop]="true">
+    <mat-drawer #drawer [mode]='"over"' [position]="'start'">
+        <app-sidebar [options]="permissionsSidebar"></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
