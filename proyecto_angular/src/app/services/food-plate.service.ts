@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FoodPlate } from '../models/food-plate';
 
 import { url_food } from '../helpers/urlsReq';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -50,10 +50,13 @@ export class FoodPlateService {
     return this.httpClient.get(url_food);
   }
 
-  async addFoodPlate(foodPlate: FoodPlate): Promise<FoodPlate> {
-    foodPlate.id = (this.courseFoodList.length + 1).toString();
-    this.courseFoodList = [foodPlate, ...this.courseFoodList];
-    return foodPlate;
+  addFoodPlate(foodPlate: FoodPlate): Observable<any>{
+    return this.httpClient.post(url_food, foodPlate).pipe(
+      map((resp) => {
+        console.log(resp)
+        return resp
+      })
+    );
   }
 
   async deleteFoodPlate(deletedfoodPlate: FoodPlate): Promise<boolean> {

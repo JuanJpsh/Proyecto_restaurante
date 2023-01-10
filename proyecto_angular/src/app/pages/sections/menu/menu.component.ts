@@ -5,8 +5,14 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { FoodPlate } from 'src/app/models/food-plate';
 import { FoodPlateService } from 'src/app/services/food-plate.service';
+import {
+  MatBottomSheet,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 
 @Component({
   selector: 'app-menu',
@@ -19,17 +25,23 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private foodPlateSvc: FoodPlateService,
+    private route: ActivatedRoute,
     private matSnackSvc: MatSnackBar,
-    private CDR: ChangeDetectorRef
+    private CDR: ChangeDetectorRef,
+    private _bottomSheet: MatBottomSheet
   ) {}
 
   ngOnInit(): void {
-    this.foodPlateSvc.getFoodPlate().subscribe((resp) => {
-      if (resp) this.foodPlateList = resp;
+    this.route.data.subscribe((data) => {
+      this.foodPlateList = data['foodPlates'];
       this.CDR.markForCheck();
     });
   }
 
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetComponent);
+  }
+/** 
   onAddFoodPlate() {
     let foodPlate: FoodPlate = {
       id: '0',
@@ -49,7 +61,7 @@ export class MenuComponent implements OnInit {
       }
     });
   }
-
+*/
   onDeleteFoodPlate(foodPlateId: String) {
     let posFoodPlate = this.foodPlateList.findIndex(
       (fp) => fp.id === foodPlateId
@@ -62,7 +74,7 @@ export class MenuComponent implements OnInit {
     }
 
     this.foodPlateList = this.foodPlateList.filter(
-      (plato) => plato !== deletedFoodPlate
+      (foodPlate) => foodPlate !== deletedFoodPlate
     );
     this.CDR.markForCheck();
     this.notifyOperation('¿Esta seguro de eliminar el plato?', 'Deshacer');
@@ -76,13 +88,13 @@ export class MenuComponent implements OnInit {
 
     this.matSnackSvc._openedSnackBarRef
       ?.afterDismissed()
-      .subscribe((notificacionOlvidada) => {
-        if (!notificacionOlvidada.dismissedByAction) {
+      .subscribe((hiddenNotification) => {
+        if (!hiddenNotification.dismissedByAction) {
           this.foodPlateSvc.deleteFoodPlate(deletedFoodPlate).then((resp) => {
             if (!resp) {
               rehacerPlato(this.foodPlateList);
-              this.CDR.markForCheck();
               this.notifyOperation('Error en sistema. Intetelo mas tarde');
+              this.CDR.markForCheck();
             }
           });
         }

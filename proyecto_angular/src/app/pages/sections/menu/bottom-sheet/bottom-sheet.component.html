@@ -1,0 +1,41 @@
+<div class="aa">
+    <form [formGroup]="foodPlateFormGroup">
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Nombre del plato">
+            <mat-error *ngIf="foodPlateFormGroup.get('name')?.touched || saveButton">
+                {{getError("name")}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <input type="text" matInput formControlName="description" placeholder="Descripción del plato">
+            <mat-error *ngIf="foodPlateFormGroup.get('description')?.touched || saveButton">
+                {{getError("description")}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Precio</mat-label>
+            <input type="number" matInput formControlName="price" placeholder="Precio del plato">
+            <mat-error *ngIf="foodPlateFormGroup.get('price')?.touched || saveButton">
+                {{getError("price")}}
+            </mat-error>
+        </mat-form-field>
+        <div class="form-field-file">
+            <input #csvInput type="file" formControlName="image" hidden="true" (change)="csvInputChange($event)"
+                accept="image/*">
+            <a mat-raised-button color="primary" (click)="csvInput.click()">Imagen<mat-icon
+                    matListItemIcon>image</mat-icon></a>
+            <mat-label> {{csvInput.value}}</mat-label>
+            <mat-error>
+                {{getError("image")}}
+            </mat-error>
+        </div>
+        <mat-error *ngIf="duplicateFood">
+            No se permiten platos con <strong>el mismo nombre</strong>.
+        </mat-error>
+        <button mat-raised-button #saveButton color="primary" [disabled]="loading" (click)="onSaveFoodPlate()">Guardar
+            plato</button>
+    </form>
+
+</div>

@@ -1,5 +1,6 @@
 const user = require("../models/User");
 const jwt = require("jsonwebtoken");
+const { httpErrorServer } = require("../helpers/httpError.helper");
 
 const signin = async (req, res) => {
   const { email, password } = req.body;

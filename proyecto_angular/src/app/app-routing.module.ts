@@ -6,15 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PermissionsResolver } from './resolvers/permissions.resolver';
 
 const routes: Routes = [
-  {
-    path: '',
-    canActivate: [OpenSessionGuard],
-    component: DashboardComponent,
-    resolve: { permissions: PermissionsResolver },
-    loadChildren: () =>
-      import('./pages/admin/admin.module').then((m) => m.AdminModule),
-    pathMatch: 'full',
-  },
+  
   {
     path: 'auth',
     canActivate: [ClosedSessionGuard],
@@ -22,8 +14,16 @@ const routes: Routes = [
       import('./pages/auth/auth.module').then((m) => m.OauthModule),
   },
   {
+    path: '',
+    canActivate: [OpenSessionGuard],
+    component: DashboardComponent,
+    resolve: { permissions: PermissionsResolver },
+    loadChildren: () =>
+      import('./pages/sections/sections.module').then((m) => m.SectionsModule),
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'auth',
   },
 ];
 

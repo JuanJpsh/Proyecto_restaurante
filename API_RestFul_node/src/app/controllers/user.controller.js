@@ -4,7 +4,7 @@ const { httpErrorServer } = require("../helpers/httpError.helper");
 const getPermissions = async (req, res) => {
   let foundUser;
   try {
-    foundUser = await user.findById(req.userId).populate("permissions");
+    foundUser = await user.findById(req.userId).populate("permissions").select('permissions');
   } catch (error) {
     return httpErrorServer(res, error.message);
   }

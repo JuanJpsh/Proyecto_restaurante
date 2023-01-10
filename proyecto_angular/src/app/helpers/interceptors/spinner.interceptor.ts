@@ -15,7 +15,10 @@ export class SpinnerInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.spinnerSvc.show();
-    return next.handle(req).pipe(finalize(() => this.spinnerSvc.hide()));
+    if (req.method === 'GET'){
+      this.spinnerSvc.show();
+      return next.handle(req.clone()).pipe(finalize(() => this.spinnerSvc.hide()));
+    }
+    return next.handle(req.clone())
   }
 }

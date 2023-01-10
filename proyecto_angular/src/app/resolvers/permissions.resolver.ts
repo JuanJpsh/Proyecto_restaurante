@@ -16,7 +16,7 @@ export class PermissionsResolver implements Resolve<any> {
     private authSvc: AuthService,
     private router: Router
   ) {}
-  resolve(): Observable<any> | undefined {
+  resolve(): Observable<any> {
     return this.userSvc.getPermissions().pipe(
       map((resp) => {
         let permissions: String[] = resp.permissions;
@@ -31,10 +31,10 @@ export class PermissionsResolver implements Resolve<any> {
           permissionsSidebar: this.permissionsSidebar,
         };
       }),
-      catchError(() => {
+      catchError((err) => {
         this.authSvc.signout();
         this.router.navigate(['/auth']);
-        throw new Error('permissions do not given');
+        throw new Error(err.error.error);
       })
     );
   }

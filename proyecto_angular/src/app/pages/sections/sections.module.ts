@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AdminRoutingModule } from './admin-routing.module';
+import { SectionsRoutingModule } from './sections-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from '../../shared/material/material.module';
 import { CardFoodPlateComponent } from './menu/clard-food-plate/card-food-plate.component';
+import { BottomSheetComponent } from './menu/bottom-sheet/bottom-sheet.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     MenuComponent,
-    CardFoodPlateComponent
+    CardFoodPlateComponent,
+    BottomSheetComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule,
-    MaterialModule
+    SectionsRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule,
   ]
 })
-export class AdminModule { }
+export class SectionsModule { }
